@@ -13,9 +13,21 @@
 #include "push_swap.h"
 #include <limits.h>
 
+int is_sorted(long *tab, size_t size)
+{
+	size_t i = 0;
+
+	while (i < size - 1)
+	{
+		if (tab[i] >  tab[i+1])
+				return (0);
+		i++;
+	}
+	return (1);
+}
 void error_handel(char *str, long *tab, char **sp)
 {
-	printf("Error");
+	write(1, "Error\n", 6);
 	free(str);
 	free(tab);
 	ft_free(sp);
@@ -36,9 +48,7 @@ int only_spaces(char *str)
 		str++;
 	}
 	if (s == ft_strlen(tmp))
-	{
 		return (0);
-	}
 	return (1);
 }
 
@@ -67,7 +77,6 @@ int main (int ac, char **av)
 	if (ac == 1)
 		return (1);
 	int j = 1;
-
 	while (av[j])
 	{
 		if (av[j][0] == 0 || !only_spaces(av[j]))
@@ -80,6 +89,8 @@ int main (int ac, char **av)
 	}
 	char *str = join_args(++av);
 	char **sp = ft_split(str, ' ');
+	if (!sp)
+		return (1);
 	size_t size = tab_size(sp);
 	long	*tab;
 	int i = 0;
@@ -100,12 +111,19 @@ int main (int ac, char **av)
 		tab = ft_numbers(sp, size);
 		if (!check_dup(tab, size))
 			error_handel(str, tab, sp);
+		if (is_sorted(tab, size))
+		{
+			puts("is_sorted");
+			exit(EXIT_SUCCESS);
+		}
+		else
+			puts("start sorting");
 	}
 	else if (flag > 0)
 		error_handel(str, tab, sp);
+	
 	free(str);
 	free(tab);
 	ft_free(sp);
 	return (0);
 }
-

@@ -8,10 +8,10 @@ NAME = push_swap
 all : $(NAME)
 
 $(NAME) : $(M_OBJS)
-	$(CC) $(CFLGAS) -g $^ -o $@
+	$(CC) $(CFLGAS) $^ -o $@
 
 %.o : %.c push_swap.h
-	$(CC) $(CFLGAS) -c -g $< -o $@
+	$(CC) $(CFLGAS) -c $< -o $@
 
 clean :
 	$(RM) $(M_OBJS)
