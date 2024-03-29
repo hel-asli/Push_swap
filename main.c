@@ -13,6 +13,15 @@
 #include "push_swap.h"
 #include <limits.h>
 
+void error_handel(char *str, long *tab, char **sp)
+{
+	printf("Error");
+	free(str);
+	free(tab);
+	ft_free(sp);
+	exit(EXIT_FAILURE);
+}
+
 int only_spaces(char *str)
 {
 	size_t s;
@@ -61,7 +70,7 @@ int main (int ac, char **av)
 
 	while (av[j])
 	{
-		if (av[e][j] == 0 || !only_spaces(av[j]))
+		if (av[j][0] == 0 || !only_spaces(av[j]))
 		{
 
 			printf("Error");
@@ -90,22 +99,10 @@ int main (int ac, char **av)
 	{
 		tab = ft_numbers(sp, size);
 		if (!check_dup(tab, size))
-		{
-			printf("Error");
-			free(str);
-			free(tab);
-			ft_free(sp);
-			exit(EXIT_FAILURE);
-		}
+			error_handel(str, tab, sp);
 	}
 	else if (flag > 0)
-	{
-		printf("Error");
-		free(str);
-		free(tab);
-		ft_free(sp);
-		exit(EXIT_FAILURE);
-	}
+		error_handel(str, tab, sp);
 	free(str);
 	free(tab);
 	ft_free(sp);

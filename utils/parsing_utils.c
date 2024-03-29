@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 05:53:43 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/03/29 07:37:51 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/03/29 09:01:50 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,11 @@ char *join_args(char **av)
 
 int is_number(char *str)
 {
-	if (*str == '-' || *str == '+')
-	{
+	if ((*str == '-' && *(str + 1) && *(str + 1) != 32))
 		str++;
-	}
+	else if ((*str == '+' && *(str + 1) && *(str + 1) != 32))
+		str++;
+	
 	while (*str)
 	{
 		if (!(*str >= '0' && *str <= '9'))
