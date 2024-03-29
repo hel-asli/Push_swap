@@ -57,17 +57,17 @@ int main (int ac, char **av)
 {
 	if (ac == 1)
 		return (1);
-	int e = 1;
+	int j = 1;
 
-	while (av[e])
+	while (av[j])
 	{
-		if (av[e][0] == 0 || !only_spaces(av[e]))
+		if (av[e][j] == 0 || !only_spaces(av[j]))
 		{
 
 			printf("Error");
 			exit(EXIT_FAILURE);
 		}
-		e++;
+		j++;
 	}
 	char *str = join_args(++av);
 	char **sp = ft_split(str, ' ');
@@ -80,6 +80,7 @@ int main (int ac, char **av)
 		if (!is_number(sp[i]))
 		{
 			flag++;
+			break ;
 		}
 		i++;
 	}
