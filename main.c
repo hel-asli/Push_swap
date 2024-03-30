@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <limits.h>
 
 int is_sorted(long *tab, size_t size)
 {
@@ -25,16 +24,14 @@ int is_sorted(long *tab, size_t size)
 	}
 	return (1);
 }
-void error_handel(char *str, long *tab, char **sp)
+void error_handel(long *tab)
 {
 	write(1, "Error\n", 6);
-	free(str);
 	free(tab);
-	ft_free(sp);
 	exit(EXIT_FAILURE);
 }
 
-int only_spaces(char *str)
+int is_spaces(char *str)
 {
 	size_t s;
 	char *tmp;
@@ -52,7 +49,7 @@ int only_spaces(char *str)
 	return (1);
 }
 
-long *ft_numbers(char **sp, size_t size)
+long *allocate_numbers(char **sp, char *str ,  size_t size)
 {
 	long *tab;
 	tab = malloc(sizeof(long *) * (size + 1));
@@ -69,61 +66,74 @@ long *ft_numbers(char **sp, size_t size)
 		long nb = ft_atol(sp[k]);
 		tab[k++] = nb;
 	}
+	ft_free(sp);
+	free(str);
 	return (tab);
 }
 
-int main (int ac, char **av)
+void check_args(int ac, char **av)
 {
+	int	j;
+
 	if (ac == 1)
-		return (1);
-	int j = 1;
+		exit(EXIT_SUCCESS);
+	j = 1;
 	while (av[j])
 	{
-		if (av[j][0] == 0 || !only_spaces(av[j]))
+		if (av[j][0] == 0 || !is_spaces(av[j]))
 		{
-
-			printf("Error");
+			write(2, "Error", 6);
 			exit(EXIT_FAILURE);
 		}
 		j++;
 	}
-	char *str = join_args(++av);
-	char **sp = ft_split(str, ' ');
-	if (!sp)
-		return (1);
-	size_t size = tab_size(sp);
-	long	*tab;
-	int i = 0;
-	int flag = 0;
-	while (sp[i] && !flag)
+}
+void ft_is_number(char **sp)
+{
+	int i;
+
+	i = 0;
+	while (sp[i])
 	{
 		if (!is_number(sp[i]))
 		{
-			flag++;
-			break ;
+			write(2, "Error\n", 6);
+			exit(EXIT_FAILURE);
 		}
 		i++;
 	}
-	// check for dup
-	tab = NULL;
-	if (flag == 0)
-	{
-		tab = ft_numbers(sp, size);
-		if (!check_dup(tab, size))
-			error_handel(str, tab, sp);
-		if (is_sorted(tab, size))
-		{
-			puts("is_sorted");
-			exit(EXIT_SUCCESS);
-		}
-		else
-			puts("start sorting");
-	}
-	else if (flag > 0)
-		error_handel(str, tab, sp);
-	
-	free(str);
-	free(tab);
-	ft_free(sp);
-	return (0);
 }
+
+void lek(void)
+{
+	system("leaks push_swap");
+}
+
+int main (int ac, char **av)
+{
+	size_t size;
+	long	*tab;
+	char	*str;
+	char	**sp;
+
+	atexit(lek);
+	check_args(ac, av);
+	str= join_args(++av);
+	sp = ft_split(str, ' ');
+	if (!sp)
+		return (free(str), write(2, "Error\n", 6), 1);
+	ft_is_number(sp);
+	size = tab_size(sp);
+	tab = allocate_numbers(sp, str, size);
+	if (!check_dup(tab, size))
+		error_handel(tab);
+	if (is_sorted(tab, size))
+		return (free(tab), exit(EXIT_SUCCESS), 0);
+	else
+	{
+		puts("start soring");
+		free(tab);
+	}
+	return 0;
+}
+
