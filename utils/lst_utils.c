@@ -6,13 +6,13 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 01:11:04 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/01 08:04:40 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/01 09:38:17 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_stack *lst_init(int   *nbr)
+t_stack *lst_init(int   nbr)
 {
     t_stack *node;
 
@@ -86,7 +86,7 @@ void print_lst(t_stack *head)
 
     while (c)
     {
-        printf("%d\n",  *(c->number));
+        printf("%d\n",  c->number);
         c = c->next;
     }
 

@@ -105,7 +105,7 @@ void ft_is_number(char **sp)
 	}
 }
 
-void lek(void)
+void lek_wli_elik(void)
 {
 	system("leaks push_swap");
 }
@@ -119,24 +119,22 @@ void stack_init(long *tab, size_t size)
 	t_stack *b;
 	size_t	k;
 
-	long *tmp = tab;
 	a = NULL;
 	b = NULL;
 	k = 0;
 	while (k < size)
 	{
-		if (k == 0 && *tab)
-			a = lst_init((int *)tab);
+		if (k == 0 && tab[k])
+			a = lst_init((int)tab[k]);
 		else
 		{
-			lst_add_back(&a, lst_init((int *)tab));
+			lst_add_back(&a, lst_init((int)tab[k]));
 		}
 		k++;
-		tab++;
 	}
+	free(tab);
+	sa(&a);
 	print_lst(a);
-	lstclear(&a);
-	free(tmp);
 }
 
 int main (int ac, char **av)
@@ -145,8 +143,9 @@ int main (int ac, char **av)
 	long	*tab;
 	char	*str;
 	char	**sp;
+	
 
-	// atexit(lek);
+	// atexit(lek_wli_elik);  
 	check_args(ac, av);
 	str= join_args(++av);
 	sp = ft_split(str, ' ');
@@ -160,7 +159,6 @@ int main (int ac, char **av)
 	if (is_sorted(tab, size))
 		return (free(tab), exit(EXIT_SUCCESS), 0);
 	stack_init(tab, size);
-	// free(tab);
 	return 0;
 }
 
