@@ -82,12 +82,13 @@ void check_args(int ac, char **av)
 	{
 		if (av[j][0] == 0 || !is_spaces(av[j]))
 		{
-			write(2, "Error", 6);
+			write(2, "Error\n", 6);
 			exit(EXIT_FAILURE);
 		}
 		j++;
 	}
 }
+
 void ft_is_number(char **sp)
 {
 	int i;
@@ -108,6 +109,35 @@ void lek(void)
 {
 	system("leaks push_swap");
 }
+void del(void *content)
+{
+	free(content);
+}
+void stack_init(long *tab, size_t size)
+{
+	t_stack *a;
+	t_stack *b;
+	size_t	k;
+
+	long *tmp = tab;
+	a = NULL;
+	b = NULL;
+	k = 0;
+	while (k < size)
+	{
+		if (k == 0 && *tab)
+			a = lst_init((int *)tab);
+		else
+		{
+			lst_add_back(&a, lst_init((int *)tab));
+		}
+		k++;
+		tab++;
+	}
+	print_lst(a);
+	lstclear(&a);
+	free(tmp);
+}
 
 int main (int ac, char **av)
 {
@@ -116,7 +146,7 @@ int main (int ac, char **av)
 	char	*str;
 	char	**sp;
 
-	atexit(lek);
+	// atexit(lek);
 	check_args(ac, av);
 	str= join_args(++av);
 	sp = ft_split(str, ' ');
@@ -129,11 +159,8 @@ int main (int ac, char **av)
 		error_handel(tab);
 	if (is_sorted(tab, size))
 		return (free(tab), exit(EXIT_SUCCESS), 0);
-	else
-	{
-		puts("start soring");
-		free(tab);
-	}
+	stack_init(tab, size);
+	// free(tab);
 	return 0;
 }
 
