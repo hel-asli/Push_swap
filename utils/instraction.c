@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 01:06:55 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/01 10:58:10 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/02 07:14:25 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 // ◦ The stack b is empty.
 // • The goal is to sort in ascending order numbers into stack a. To do so you have the
 // following operations at your disposal:
-// sa (swap a): Swap the first 2 elements at the top of stack a.
+// sa (swap a): Swap the first 2 elements at the top of stack a. X
 // Do nothing if there is only one or no elements.
-// sb (swap b): Swap the first 2 elements at the top of stack b.
+// sb (swap b): Swap the first 2 elements at the top of stack b. X
 // Do nothing if there is only one or no elements.
-// ss : sa and sb at the same time.
-// pa (push a): Take the first element at the top of b and put it at the top of a.
+// ss : sa and sb at the same time. X
+// pa (push a): Take the first element at the top of b and put it at the top of a. 
 // Do nothing if b is empty.
 // pb (push b): Take the first element at the top of a and put it at the top of b.
 // Do nothing if a is empty.
@@ -43,10 +43,10 @@
 
 
 // sa
-t_stack *sa(t_stack **a)
+void swap(t_stack **a, int n)
 {
-    if (!a)
-        return (NULL);
+    if (!a || !*a || !(*a)->next)
+        return ;
     t_stack *tmp;
 
     tmp = (*a)->next;
@@ -55,26 +55,94 @@ t_stack *sa(t_stack **a)
 
     // *a = tmp;
     lst_add_front(a, tmp);
-    return (*a);
-}
-
-t_stack *sb(t_stack **b)
-{
-    if (!b)
-        return (NULL);
-    t_stack *tmp;
-
-    tmp = (*b)->next;
-    (*b)->next = tmp->next;
-    // tmp ->next = *a;
-
-    // *a = tmp;
-    lst_add_front(b, tmp);
-    return (*a);
+    if (n == -1)
+        write(1, "sa\n", 3);
+    else if (n == 1)
+        write(1, "sb\n", 3);
 }
 
 void ss(t_stack **a, t_stack **b)
 {
-    sa(a);
-    sb(b);
+    swap(a, 2);
+    swap(b, 2);
+    write(1, "ss\n", 3);
+}
+
+void pb(t_stack **a, t_stack **b)
+{
+    if (!a || !*a || !b)
+        return ;
+    t_stack *tmp = *a;
+    (*a) = (*a)->next;
+    if (!*b)
+    {
+        *b = tmp;
+        tmp->next = NULL;
+    }
+    else
+        tmp->next = *b;
+    write(1, "pb\n", 3);
+}
+
+void pa(t_stack **a, t_stack **b)
+{
+    if (!a || !b || !*b)
+        return ;
+    t_stack *tmp = *b;
+    (*b) = (*b)->next;
+    if (!*a)
+    {
+        *a = tmp;
+        tmp->next = NULL;
+    }
+    else
+        tmp->next = *a;
+    write(1, "pa\n", 3);
+}
+
+
+void rotate(t_stack **a, int n)
+{
+    if (!a || !*a || !(*a)->next)
+        return ;
+    t_stack *tmp = *a;
+    t_stack *last = lst_last(*a);
+
+    *a = tmp->next;
+    last->next = tmp;
+    last->next->next = NULL;
+    if (n == -1)
+        write(1, "ra\n", 3);
+    else if (n == 1)
+        write(1, "rb\n", 3);
+}
+
+void rr(t_stack **a, t_stack **b)
+{
+    rotate(a, 2);
+    rotate(b, 2);
+    write(1, "rr\n", 3);
+}
+void reverse_rotate(t_stack **a, int n)
+{
+    if (!*a || !(*a)->next)
+        return ;
+    t_stack *tmp = *a;
+    while (tmp->next->next)
+    {
+        tmp = tmp->next;
+    }
+    lst_add_front(a, tmp->next);
+    tmp->next = NULL;
+    if (n == -1)
+        write(1, "rra\n", 4);
+    else if (n == 1)
+        write(1, "rrb\n", 4);
+}
+
+void rrr(t_stack **a, t_stack **b)
+{
+    reverse_rotate(a, 2);
+    reverse_rotate(b, 2);
+    write(1, "rrr\n", 4);
 }

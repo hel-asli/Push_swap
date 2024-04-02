@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:02:19 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/01 10:09:32 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/02 07:25:08 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,19 @@ t_stack *lst_add_front(t_stack **root, t_stack *node);
 void print_lst(t_stack *head);
 void	lstclear(t_stack **lst);
 void    lst_add_back(t_stack **root, t_stack *node);
-t_stack *sa(t_stack **a);
+void swap(t_stack **a, int n);
+void pb(t_stack **a, t_stack **b);
+void pa(t_stack **a, t_stack **b);
+void rotate(t_stack **a, int n);
+t_stack *lst_last(t_stack *root);
+void rr(t_stack **a, t_stack **b);
+void reverse_rotate(t_stack **a, int n);
+void rrr(t_stack **a, t_stack **b);
+
+int is_sorted(long *tab, size_t size);
+int is_spaces(char *str); 
+long *allocate_numbers(char **sp, char *str ,  size_t size);
+void check_args(int ac, char **av);
+void ft_is_number(char **sp);
 
 # endif
