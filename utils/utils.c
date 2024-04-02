@@ -6,11 +6,35 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 13:30:49 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/03/29 07:40:15 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/02 16:33:29 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+
+void ft_putstr_fd(char *str, int fd)
+{
+    while (*str)
+    {
+        write(fd, str, 1);
+        str++;
+    }
+}
+
+size_t ft_strlen(char *str)
+{
+    size_t n;
+    
+    n = 0;
+    while (*str)
+    {
+        n++;
+        str++;
+    }
+
+    return (n);
+}
 
 long ft_atol(char *str)
 {

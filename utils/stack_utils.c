@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lst_utils.c                                        :+:      :+:    :+:   */
+/*   stack_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 01:11:04 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/01 09:38:17 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/02 20:50:06 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_stack *lst_init(int   nbr)
     if (!node)
         return (NULL);
     node->number = nbr;
+    node->index = -1;
     node->next = NULL;
     return (node);
 }
@@ -49,9 +50,9 @@ void    lst_add_back(t_stack **root, t_stack *node)
         last->next = node;
     }
 }
-size_t lst_size(t_stack *root)
+int lst_size(t_stack *root)
 {
-    size_t size;
+    int size;
     if (!root)
         return (0);
 
@@ -86,7 +87,7 @@ void print_lst(t_stack *head)
 
     while (c)
     {
-        printf("%d\n",  c->number);
+        printf("index : %d , posit : %d : number :  ---> %d\n", c->index, c->postion, c->number);
         c = c->next;
     }
 
