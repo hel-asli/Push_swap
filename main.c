@@ -122,9 +122,9 @@ void algo_implement(t_stack **a, t_stack **b)
 void start_sorting(t_stack **a, t_stack **b, size_t size)
 {
 	int i = 0;
-	int	range = 15;
+	int	range = 16;
 	if (size > 100)
-		range = 22;
+		range = 33;
 
 	while (lst_size(*a))
 	{
