@@ -1,7 +1,7 @@
 CC = cc
 CFLGAS = -Wall -Wextra -Werror
-M_SRCSS = main.c utils/ft_atol.c utils/ft_putstr_fd.c utils/ft_split.c utils/ft_strlen.c \
-		  utils/parsing_utils.c utils/lst_utils.c utils/instraction.c utils/parsing_helper.c
+M_SRCSS = main.c utils/utils.c utils/ft_split.c utils/parsing_utils.c utils/operations.c utils/stack_utils.c \
+ 			utils/parsing_helper.c
 
 M_OBJS = $(M_SRCSS:.c=.o)
 NAME = push_swap

@@ -6,23 +6,25 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 01:06:55 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/02 16:37:50 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/03 14:23:51 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
 
-void swap(t_stack **a, int n)
+void swap(t_stack **s, int n)
 {
-    if (!a || !*a || !(*a)->next)
+    if (!s || !*s || !(*s)->next)
         return ;
     t_stack *tmp;
 
-    tmp = (*a)->next;
-    (*a)->next = tmp->next;
+    tmp = (*s)->next;
+    (*s)->next = tmp->next;
 
-    lst_add_front(a, tmp);
+    tmp->next = *s;
+    *s = tmp;
+    // lst_add_front(a, tmp);
     if (n == -1)
         write(1, "sa\n", 3);
     else if (n == 1)
@@ -36,55 +38,41 @@ void ss(t_stack **a, t_stack **b)
     write(1, "ss\n", 3);
 }
 
+
+void push(t_stack **dst, t_stack **src)
+{
+    if (!src || !*src)
+        return ;
+
+    t_stack *tmp = *src;
+    *src = (*src)->next;
+    tmp->next = *dst;
+    *dst = tmp;
+}
 void pb(t_stack **a, t_stack **b)
 {
-    if (!a || !*a || !b)
-        return ;
-    t_stack *tmp = *a;
-    (*a) = (*a)->next;
-    if (!*b)
-    {
-        *b = tmp;
-        tmp->next = NULL;
-    }
-    else
-    {
-        tmp->next = *b;
-        *b = tmp;
-    }
+    push(b, a);
     write(1, "pb\n", 3);
 }
 
-void pa(t_stack **a, t_stack **b)
+void pa(t_stack **b, t_stack **a)
 {
-    if (!a || !b || !*b)
-        return ;
-    t_stack *tmp = *b;
-    (*b) = (*b)->next;
-    if (!*a)
-    {
-        *a = tmp;
-        tmp->next = NULL;
-    }
-    else
-    {
-        tmp->next = *a;
-        *a = tmp;
-    }
+    push(a, b);
     write(1, "pa\n", 3);
 }
 
 
-void rotate(t_stack **a, int n)
+void rotate(t_stack **s, int n)
 {
-    if (!a || !*a || !(*a)->next)
+    if (!s || !*s || !(*s)->next)
         return ;
-    t_stack *tmp = *a;
-    t_stack *last = lst_last(*a);
+    t_stack *tmp = *s;
+    t_stack *last;
+    *s = (*s)->next;
+    tmp->next = NULL;
 
-    *a = tmp->next;
+    last = lst_last(*s);
     last->next = tmp;
-    last->next->next = NULL;
     if (n == -1)
         write(1, "ra\n", 3);
     else if (n == 1)
@@ -97,17 +85,21 @@ void rr(t_stack **a, t_stack **b)
     rotate(b, 2);
     write(1, "rr\n", 3);
 }
-void reverse_rotate(t_stack **a, int n)
+void reverse_rotate(t_stack **s, int n)
 {
-    if (!*a || !(*a)->next)
+    if (!s || !*s || !(*s)->next)
         return ;
-    t_stack *tmp = *a;
-    while (tmp->next->next)
+    t_stack *tmp = *s;
+    t_stack *prev;
+    while (tmp->next)
     {
+        prev = tmp;
         tmp = tmp->next;
     }
-    lst_add_front(a, tmp->next);
-    tmp->next = NULL;
+
+    prev->next = NULL;
+    tmp->next = *s;
+    *s = tmp;
     if (n == -1)
         write(1, "rra\n", 4);
     else if (n == 1)

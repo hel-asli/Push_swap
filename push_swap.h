@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:02:19 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/02 07:25:08 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/02 17:45:40 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 
 typedef struct s_stack
 {
+    int             index;
+    int             postion;
     int             number;
-    struct s_stack  *top;
-    struct s_stack  *bottom;
     struct s_stack  *next;
 } t_stack;
 
@@ -58,5 +58,6 @@ int is_spaces(char *str);
 long *allocate_numbers(char **sp, char *str ,  size_t size);
 void check_args(int ac, char **av);
 void ft_is_number(char **sp);
+int lst_size(t_stack *root);
 
 # endif
