@@ -1,24 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   algo_helper_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/25 08:04:39 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/03/25 08:46:47y hel-asli         ###   ########.fr       */
+/*   Created: 2024/04/03 23:51:12 by hel-asli          #+#    #+#             */
+/*   Updated: 2024/04/04 00:39:21 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-
-void error_handel(long *tab)
-{
-	write(1, "Error\n", 6);
-	free(tab);
-	exit(EXIT_FAILURE);
-}
+#include "../push_swap_bonus.h"
 
 t_stack *ft_max (t_stack *head)
 {
@@ -104,102 +96,17 @@ void algo_implement(t_stack **a, t_stack **b)
 			pa(b, a);
 		else if (bigest_index_post < (size / 2))
 		{
-			while (bigest_index_post--)
-				rotate(b, 1);
+			while (bigest_index_post--) rotate(b, 1);
 			pa(b, a);
 		}
 		else
 		{
 			k = size - bigest_index_post;
-			while (k--)
-				reverse_rotate(b, 1);
+			while (k--) reverse_rotate(b, 1);
 			pa(b, a);
 		}
 	}
+    stack_clear(b);
+    stack_clear(a);
 }
 
-
-void start_sorting(t_stack **a, t_stack **b, size_t size)
-{
-	int i = 0;
-	int	range = 16;
-	if (size > 100)
-		range = 33;
-
-	while (lst_size(*a))
-	{
-		if ((*a)->index <= i)
-		{
-			pb(a, b);
-			i++;
-		}
-		else if ((i + range) > (*a)->index)
-		{
-			pb(a, b);
-			rotate(b, 1);
-			i++;
-		}
-		else
-			rotate(a, -1);
-	}
-	algo_implement(a, b);
-}
-
-void stack_init(long *tab, size_t size)
-{
-	t_stack *a;
-	t_stack *b;
-	size_t	k;
-
-	a = NULL;
-	b = NULL;
-	k = 0;
-	while (k < size && tab)
-	{
-		if (k == 0)
-			a = lst_init((int)tab[k]);
-		else
-		{
-			lst_add_back(&a, lst_init((int)tab[k]));
-		}
-		k++;
-	}
-	ft_index(a, size);
-	free(tab);
-	start_sorting(&a, &b, size);
-	// printf("stack a:");
-	print_lst(b);
-	// print_lst(a);
-	lstclear(&a);
-}
-
-void lek(void)
-{
-	system("leaks push_swap");
-}
-
-
-int main (int ac, char **av)
-{
-	size_t size;
-	long	*tab;
-	char	*str;
-	char	**sp;
-	
-
-	// atexit(lek);  
-	check_args(ac, av);
-	str= join_args(++av);
-	sp = ft_split(str, ' ');
-	if (!sp)
-		return (free(str), write(2, "Error\n", 6), 1);
-	ft_is_number(sp);
-	size = tab_size(sp);
-	tab = allocate_numbers(sp, str, size);
-	if (!check_dup(tab, size))
-		error_handel(tab);
-	if (is_sorted(tab, size))
-		return (free(tab), exit(EXIT_SUCCESS), 0);
-	stack_init(tab, size);
-	return 0;
-}

@@ -4,12 +4,13 @@ filename=result.txt
 
 #change this to 500 or whatever
 number=100
+nbr_test=100
 
 touch $filename
 i=1
-while [[ i -le 1000 ]]
+while [[ i -le $nbr_test ]]
 do
-A=($(seq 0 500 | sort -R | head -n $number))
+A=($(seq -10000 10000 | sort -R | head -n $number))
 ./push_swap "${A[@]}" | wc -l | awk '{if ($1 > 5500) printf("%d ***************************\n", $1); else print $1 }' >> $filename
 ./push_swap "${A[@]}" | ./checker_Mac "${A[@]}" >> $filename
 (( i += 1 ))

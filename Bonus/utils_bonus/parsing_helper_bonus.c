@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/02 07:23:17 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/02 07:24:24 by hel-asli         ###   ########.fr       */
+/*   Created: 2024/04/03 23:51:42 by hel-asli          #+#    #+#             */
+/*   Updated: 2024/04/03 23:51:51 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../push_swap_bonus.h"
 
 int is_sorted(long *tab, size_t size)
 {
