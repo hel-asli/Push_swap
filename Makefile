@@ -1,8 +1,9 @@
 CC = cc
+Debug = -fsantize=address -g
 CFLGAS = -Wall -Wextra -Werror
 M_SRCSS = Mandatory/main.c Mandatory/utils/utils.c Mandatory/utils/ft_split.c \
 		Mandatory/utils/parsing_utils.c Mandatory/utils/operations.c Mandatory/utils/stack_utils.c \
- 		Mandatory/utils/parsing_helper.c Mandatory/utils/algo_helper.c
+ 		Mandatory/utils/parsing_helper.c Mandatory/utils/algo_helper.c Mandatory/utils/sorting_helper.c
 
 M_OBJS = $(M_SRCSS:.c=.o)
 NAME = push_swap

@@ -12,17 +12,16 @@
 
 #include "push_swap.h"
 
-
-void error_handel(long *tab)
+void	error_handel(long *tab)
 {
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	free(tab);
 	exit(EXIT_FAILURE);
 }
 
-void start_sorting(t_stack **a, t_stack **b, size_t size)
+void	start_sorting(t_stack **a, t_stack **b, size_t size)
 {
-	int i = 0;
+	int	i = 0;
 	int	range = 16;
 	if (size > 100)
 		range = 33;
@@ -57,12 +56,27 @@ void stack_init(long *tab, size_t size)
 	k = 0;
 	while (k < size && tab)
 	{
-		stack_add_back(&a, stack_node_init((int)tab[k]));
+		if (k == 0)
+			a = stack_node_init((int)tab[k]);
+		else
+			stack_add_back(&a, stack_node_init((int)tab[k]));
 		k++;
 	}
 	free(tab);
 	ft_index(a, size);
-	start_sorting(&a, &b, size);
+
+	if (stack_size(a) == 2)
+		sort_two(&a);
+	else if (stack_size(a) == 3)
+		sort_three(&a);
+	else if (stack_size(a) == 4)
+		sort_four(&a, &b);
+	else if (stack_size(a) == 5) 
+		sort_five(&a, &b);
+	else
+		start_sorting(&a, &b, size);
+	stack_clear(&a);
+	stack_clear(&b);
 }
 
 void lek(void)
@@ -95,4 +109,3 @@ int main (int ac, char **av)
 	stack_init(tab, size);
 	return 0;
 }
-	

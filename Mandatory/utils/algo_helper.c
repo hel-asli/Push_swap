@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 22:04:21 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/04 00:41:06 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/04 21:56:00 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void algo_implement(t_stack **a, t_stack **b)
 	int k;
 	int size;
 
+	// sort_three(a);
 	while (*b)
 	{
 		size = stack_size(*b);
@@ -106,7 +107,7 @@ void algo_implement(t_stack **a, t_stack **b)
 			pa(b, a);
 		}
 	}
-    stack_clear(b);
-    stack_clear(a);
+    // stack_clear(b);
+    // stack_clear(a);
 }
 

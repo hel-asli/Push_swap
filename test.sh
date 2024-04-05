@@ -3,7 +3,7 @@
 filename=result.txt
 
 #change this to 500 or whatever
-number=100
+number=5
 nbr_test=100
 
 touch $filename

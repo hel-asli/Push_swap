@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 01:11:04 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/04 00:40:45 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/04 03:34:48 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,18 +56,15 @@ void	stack_add_back(t_stack **stack, t_stack *new)
 {
 	t_stack	*last;
 
-	if (stack)
-	{
-		if (*stack == NULL)
-		{
-			*stack = new;
-		}
-		else
-		{
-			last = stack_last(*stack);
-			last->next = new;
-		}
-	}
+    if (*stack == NULL)
+    {
+        *stack = new;
+    }
+    else
+    {
+        last = stack_last(*stack);
+        last->next = new;
+    }
 }
 
 void	stack_clear(t_stack **lst)
