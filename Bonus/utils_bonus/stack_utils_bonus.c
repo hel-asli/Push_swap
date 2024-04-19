@@ -6,13 +6,13 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 01:11:04 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/04 00:39:21 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/17 18:05:42 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "../push_swap_bonus.h"
 
-t_stack *lst_init(int   nbr)
+t_stack *stack_node_init(int   nbr)
 {
     t_stack *node;
 
@@ -25,7 +25,7 @@ t_stack *lst_init(int   nbr)
     return (node);
 }
 
-t_stack *lst_last(t_stack *root)
+t_stack *stack_last(t_stack *root)
 {
     if (!root)
         return NULL;
@@ -36,21 +36,7 @@ t_stack *lst_last(t_stack *root)
 
     return (root);
 }
-void    lst_add_back(t_stack **root, t_stack *node)
-{
-    if (!root)
-        return ;
-    t_stack *last;
-
-    if (!*root)
-        *root = node;
-    else
-    {
-        last = lst_last(*root);
-        last->next = node;
-    }
-}
-int lst_size(t_stack *root)
+int stack_size(t_stack *root)
 {
     int size;
     if (!root)
@@ -66,20 +52,20 @@ int lst_size(t_stack *root)
     return (size);
 }
 
-t_stack *lst_add_front(t_stack **root, t_stack *node)
+void	stack_add_back(t_stack **stack, t_stack *new)
 {
-    if (!root || !node)
-        return (NULL);
-    if (!*root)
-        *root = node;
+	t_stack	*last;
+
+    if (*stack == NULL)
+    {
+        *stack = new;
+    }
     else
     {
-        node->next = *root;
-        *root = node;
+        last = stack_last(*stack);
+        last->next = new;
     }
-    return (node);
 }
-
 
 void	stack_clear(t_stack **lst)
 {
