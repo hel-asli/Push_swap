@@ -6,15 +6,15 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 05:53:43 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/17 18:05:30 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/20 22:59:19 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_bonus.h"
 
-size_t tab_size(char **str)
+size_t	tab_size(char **str)
 {
-	size_t n;
+	size_t	n;
 
 	n = 0;
 	while (*str)
@@ -25,9 +25,9 @@ size_t tab_size(char **str)
 	return (n);
 }
 
-size_t count_chars(char **av)
+size_t	count_chars(char **av)
 {
-	int t;
+	int	t;
 
 	if (!*av)
 		return (0);
@@ -40,18 +40,21 @@ size_t count_chars(char **av)
 	return (t);
 }
 
-
-char *join_args(char **av)
+char	*join_args(char **av)
 {
-	size_t count = count_chars(av);
-	char *str = malloc(sizeof(char) * (count + 1));
-	(void)count;
+	size_t	count;
+	char	*str;
+	char	*tmp;
+	int		k;
+
+	count = count_chars(av);
+	str = malloc(sizeof(char) * (count + 1));
+	k = 0;
 	if (!str)
 		return (NULL);
-	int k = 0;
 	while (*av)
 	{
-		char *tmp = *av;
+		tmp = *av;
 		while (*tmp)
 		{
 			str[k++] = *tmp;
@@ -61,16 +64,15 @@ char *join_args(char **av)
 		av++;
 	}
 	str[k] = 0;
-	return str;
+	return (str);
 }
 
-int is_number(char *str)
+int	is_number(char *str)
 {
 	if ((*str == '-' && *(str + 1) && *(str + 1) != 32))
 		str++;
 	else if ((*str == '+' && *(str + 1) && *(str + 1) != 32))
 		str++;
-	
 	while (*str)
 	{
 		if (!(*str >= '0' && *str <= '9'))
@@ -80,11 +82,11 @@ int is_number(char *str)
 	return (1);
 }
 
-int check_dup(long *tab, size_t size)
+int	check_dup(long *tab, size_t size)
 {
-	size_t i;
-	size_t k;
-	
+	size_t	i;
+	size_t	k;
+
 	i = 0;
 	while (i < size)
 	{

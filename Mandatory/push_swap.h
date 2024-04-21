@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:02:19 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/18 22:51:27 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:15:03 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,7 @@ void	algo_implement(t_stack **a, t_stack **b);
 void	sort_three(t_stack **stack);
 void	sort_four(t_stack **a, t_stack **b);
 void	sort_five(t_stack **a, t_stack **b);
+void	pb_lowest_index(t_stack **a, t_stack **b, int lowest_index_post,
+			int size);
 
 #endif

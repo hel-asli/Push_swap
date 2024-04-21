@@ -6,65 +6,64 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 01:11:04 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/17 18:05:42 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/20 23:02:09 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_bonus.h"
 
-t_stack *stack_node_init(int   nbr)
+t_stack	*stack_node_init(int nbr)
 {
-    t_stack *node;
+	t_stack	*node;
 
-    node = malloc(sizeof(t_stack));
-    if (!node)
-        return (NULL);
-    node->number = nbr;
-    node->index = -1;
-    node->next = NULL;
-    return (node);
+	node = malloc(sizeof(t_stack));
+	if (!node)
+		return (NULL);
+	node->number = nbr;
+	node->index = -1;
+	node->next = NULL;
+	return (node);
 }
 
-t_stack *stack_last(t_stack *root)
+t_stack	*stack_last(t_stack *root)
 {
-    if (!root)
-        return NULL;
-    while (root->next != NULL)
-    {
-        root = root->next;
-    }
-
-    return (root);
+	if (!root)
+		return (NULL);
+	while (root->next != NULL)
+	{
+		root = root->next;
+	}
+	return (root);
 }
-int stack_size(t_stack *root)
+
+int	stack_size(t_stack *root)
 {
-    int size;
-    if (!root)
-        return (0);
+	int	size;
 
-    size = 0;
-    while (root)
-    {
-        size++;
-        root = root->next;
-    }
-
-    return (size);
+	if (!root)
+		return (0);
+	size = 0;
+	while (root)
+	{
+		size++;
+		root = root->next;
+	}
+	return (size);
 }
 
 void	stack_add_back(t_stack **stack, t_stack *new)
 {
 	t_stack	*last;
 
-    if (*stack == NULL)
-    {
-        *stack = new;
-    }
-    else
-    {
-        last = stack_last(*stack);
-        last->next = new;
-    }
+	if (*stack == NULL)
+	{
+		*stack = new;
+	}
+	else
+	{
+		last = stack_last(*stack);
+		last->next = new;
+	}
 }
 
 void	stack_clear(t_stack **lst)

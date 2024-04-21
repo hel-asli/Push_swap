@@ -6,30 +6,30 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 07:23:17 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/03 22:56:30 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/20 22:57:14 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int is_sorted(long *tab, size_t size)
+int	is_sorted(long *tab, size_t size)
 {
-	size_t i = 0;
+	size_t	i;
 
+	i = 0;
 	while (i < size - 1)
 	{
-		if (tab[i] >  tab[i+1])
-				return (0);
+		if (tab[i] > tab[i + 1])
+			return (0);
 		i++;
 	}
 	return (1);
 }
 
-
-int is_spaces(char *str)
+int	is_spaces(char *str)
 {
-	size_t s;
-	char *tmp;
+	size_t	s;
+	char	*tmp;
 
 	s = 0;
 	tmp = str;
@@ -44,21 +44,22 @@ int is_spaces(char *str)
 	return (1);
 }
 
-long *allocate_numbers(char **sp, char *str ,  size_t size)
+long	*allocate_numbers(char **sp, char *str, size_t size)
 {
-	long *tab;
+	long	*tab;
+	long	nb;
+	size_t	k;
+
 	tab = malloc(sizeof(long *) * (size + 1));
 	if (!tab)
 	{
 		ft_free(sp);
 		return (NULL);
 	}
-	size_t k;
-
 	k = 0;
 	while (k < size)
 	{
-		long nb = ft_atol(sp[k]);
+		nb = ft_atol(sp[k]);
 		tab[k++] = nb;
 	}
 	ft_free(sp);
@@ -66,7 +67,7 @@ long *allocate_numbers(char **sp, char *str ,  size_t size)
 	return (tab);
 }
 
-void check_args(int ac, char **av)
+void	check_args(int ac, char **av)
 {
 	int	j;
 
@@ -84,9 +85,9 @@ void check_args(int ac, char **av)
 	}
 }
 
-void ft_is_number(char **sp)
+void	ft_is_number(char **sp)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (sp[i])

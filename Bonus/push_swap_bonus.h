@@ -6,21 +6,21 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 23:28:01 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/19 20:36:07 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/21 02:16:26 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_BONUS_H
-#define PUSH_SWAP_BONUS_H
+# define PUSH_SWAP_BONUS_H
 
-#ifndef BUFFER_SIZE
-#define BUFFER_SIZE 42
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <limits.h>
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <limits.h>
 
 typedef struct s_stack
 {
@@ -68,6 +68,11 @@ size_t	ft_strlen(char *str);
 size_t	tab_size(char **str);
 size_t	count_chars(char **av);
 char	*join_args(char **av);
+int		check_operation(char *str);
+void	excute_op(char *str, t_stack **a, t_stack **b);
+void	check_stack(t_stack *a, t_stack *b);
+int		read_inst(t_stack **a, t_stack **b);
+int		ft_strcmp(char *s1, char *s2);
 
 // stack utils 
 

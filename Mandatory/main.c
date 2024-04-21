@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:04:39 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/03/25 08:46:47y hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/20 21:19:33 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@ void	error_handel(long *tab)
 
 void	start_sorting(t_stack **a, t_stack **b, size_t size)
 {
-	int	i = 0;
-	int	range = 16;
+	int	i;
+	int	range;
+
+	i = 0;
+	range = 16;
 	if (size > 100)
 		range = 33;
-
 	while (stack_size(*a))
 	{
 		if ((*a)->index <= i)
@@ -45,11 +47,27 @@ void	start_sorting(t_stack **a, t_stack **b, size_t size)
 	algo_implement(a, b);
 }
 
-void stack_init(long *tab, size_t size)
+void	algo_chose(t_stack **a, t_stack **b, size_t size)
 {
-	t_stack *a;
-	t_stack *b;
-	size_t	k;
+	if (stack_size(*a) == 2)
+		sort_two(a);
+	else if (stack_size(*a) == 3)
+		sort_three(a);
+	else if (stack_size(*a) == 4)
+		sort_four(a, b);
+	else if (stack_size(*a) == 5)
+		sort_five(a, b);
+	else
+		start_sorting(a, b, size);
+	stack_clear(a);
+	stack_clear(b);
+}
+
+void	stack_init(long *tab, size_t size)
+{
+	t_stack		*a;
+	t_stack		*b;
+	size_t		k;
 
 	a = NULL;
 	b = NULL;
@@ -64,38 +82,24 @@ void stack_init(long *tab, size_t size)
 	}
 	free(tab);
 	ft_index(a, size);
-
-	if (stack_size(a) == 2)
-		sort_two(&a);
-	else if (stack_size(a) == 3)
-		sort_three(&a);
-	else if (stack_size(a) == 4)
-		sort_four(&a, &b);
-	else if (stack_size(a) == 5) 
-		sort_five(&a, &b);
-	else
-		start_sorting(&a, &b, size);
-	stack_clear(&a);
-	stack_clear(&b);
+	algo_chose(&a, &b, size);
 }
-
+/*
 void lek(void)
 {
 	system("leaks push_swap");
 }
+*/
 
-
-int main (int ac, char **av)
+int	main(int ac, char **av)
 {
-	size_t size;
+	size_t	size;
 	long	*tab;
 	char	*str;
 	char	**sp;
-	
 
-	// atexit(lek);  
 	check_args(ac, av);
-	str= join_args(++av);
+	str = join_args(++av);
 	sp = ft_split(str, ' ');
 	if (!sp)
 		return (free(str), write(2, "Error\n", 6), 1);
@@ -107,5 +111,5 @@ int main (int ac, char **av)
 	if (is_sorted(tab, size))
 		return (free(tab), exit(EXIT_SUCCESS), 0);
 	stack_init(tab, size);
-	return 0;
+	return (0);
 }

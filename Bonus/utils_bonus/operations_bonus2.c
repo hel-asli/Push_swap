@@ -1,53 +1,57 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations_bonus.c                                 :+:      :+:    :+:   */
+/*   operations_bonus2.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/31 01:06:55 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/21 02:12:39 by hel-asli         ###   ########.fr       */
+/*   Created: 2024/04/20 22:55:04 by hel-asli          #+#    #+#             */
+/*   Updated: 2024/04/20 23:05:19 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap_bonus.h"
 
-void	swap(t_stack **s)
+void	rotate(t_stack **s)
 {
 	t_stack	*tmp;
+	t_stack	*last;
 
 	if (!s || !*s || !(*s)->next)
 		return ;
-	tmp = (*s)->next;
-	(*s)->next = tmp->next;
+	tmp = *s;
+	*s = (*s)->next;
+	tmp->next = NULL;
+	last = stack_last(*s);
+	last->next = tmp;
+}
+
+void	rr(t_stack **a, t_stack **b)
+{
+	rotate(a);
+	rotate(b);
+}
+
+void	reverse_rotate(t_stack **s)
+{
+	t_stack	*tmp;
+	t_stack	*prev;
+
+	if (!s || !*s || !(*s)->next)
+		return ;
+	tmp = *s;
+	while (tmp->next)
+	{
+		prev = tmp;
+		tmp = tmp->next;
+	}
+	prev->next = NULL;
 	tmp->next = *s;
 	*s = tmp;
 }
 
-void	ss(t_stack **a, t_stack **b)
+void	rrr(t_stack **a, t_stack **b)
 {
-	swap(a);
-	swap(b);
-}
-
-void	push(t_stack **dst, t_stack **src)
-{
-	t_stack	*tmp;
-
-	if (!src || !*src)
-		return ;
-	tmp = *src;
-	*src = (*src)->next;
-	tmp->next = *dst;
-	*dst = tmp;
-}
-
-void	pb(t_stack **a, t_stack **b)
-{
-	push(b, a);
-}
-
-void	pa(t_stack **b, t_stack **a)
-{
-	push(a, b);
+	reverse_rotate(a);
+	reverse_rotate(b);
 }

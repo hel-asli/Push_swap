@@ -6,61 +6,85 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/28 13:30:49 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/03 22:57:03 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/04/20 18:13:00 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-
-void ft_putstr_fd(char *str, int fd)
+void	ft_putstr_fd(char *str, int fd)
 {
-    while (*str)
-    {
-        write(fd, str, 1);
-        str++;
-    }
+	while (*str)
+	{
+		write(fd, str, 1);
+		str++;
+	}
 }
 
-size_t ft_strlen(char *str)
+size_t	ft_strlen(char *str)
 {
-    size_t n;
-    
-    n = 0;
-    while (*str)
-    {
-        n++;
-        str++;
-    }
+	size_t	n;
 
-    return (n);
+	n = 0;
+	while (*str)
+	{
+		n++;
+		str++;
+	}
+	return (n);
 }
 
-long ft_atol(char *str)
+void	pb_lowest_index(t_stack **a, t_stack **b, int lowest_index_post,
+		int size)
 {
-    long nb;
-    long tmp;
-    int signe;
+	int	k;
 
-    signe = 1;
-    if (*str == '-' || *str == '+')
-    {
-        if (*str == '-')
-            signe *= -1;
-        str++;
-    }
+	if (lowest_index_post == 0)
+		pb(a, b);
+	else if (lowest_index_post < (size / 2))
+	{
+		while (lowest_index_post > 0)
+		{
+			rotate(a, -1);
+			lowest_index_post--;
+		}
+		pb(a, b);
+	}
+	else
+	{
+		k = size - lowest_index_post;
+		while (k > 0)
+		{
+			reverse_rotate(a, -1);
+			k--;
+		}
+		pb(a, b);
+	}
+}
 
-    nb = 0;
-    while (*str && (*str >= '0' && *str <= '9'))
-    {
-        tmp = (nb * 10) + (*str - 48);
-        if (tmp < nb && signe == 1)
-            return (LONG_MAX);
-        if (tmp < nb && signe == -1)
-            return (LONG_MIN);
-        nb = tmp;
-        str++;
-    }
+long	ft_atol(char *str)
+{
+	long	nb;
+	long	tmp;
+	int		signe;
 
-    return (nb * signe);
+	signe = 1;
+	if (*str == '-' || *str == '+')
+	{
+		if (*str == '-')
+			signe *= -1;
+		str++;
+	}
+	nb = 0;
+	while (*str && (*str >= '0' && *str <= '9'))
+	{
+		tmp = (nb * 10) + (*str - 48);
+		if (tmp < nb && signe == 1)
+			return (LONG_MAX);
+		if (tmp < nb && signe == -1)
+			return (LONG_MIN);
+		nb = tmp;
+		str++;
+	}
+	return (nb * signe);
 }
