@@ -5,7 +5,7 @@ M_SRCSS = Mandatory/main.c Mandatory/utils/utils.c Mandatory/utils/ft_split.c \
 		Mandatory/utils/parsing_utils.c Mandatory/utils/operations.c Mandatory/utils/operations2.c Mandatory/utils/stack_utils.c \
  		Mandatory/utils/parsing_helper.c Mandatory/utils/algo_helper.c Mandatory/utils/sorting_helper.c Mandatory/utils/operations2.c
 B_SRCS = Bonus/main.c Bonus/utils_bonus/ft_split_bonus.c Bonus/utils_bonus/operations_bonus.c Bonus/utils_bonus/parsing_utils_bonus.c Bonus/utils_bonus/parsing_helper_bonus.c \
-		Bonus/utils_bonus/stack_utils_bonus.c Bonus/utils_bonus/utils.c Bonus/get_next_line/get_next_line.c Bonus/get_next_line/get_next_line_utils.c \
+		Bonus/utils_bonus/stack_utils_bonus.c Bonus/utils_bonus/utils.c Bonus/gnl/get_next_line.c Bonus/gnl/get_next_line_utils.c \
 		Bonus/utils_bonus/operations_bonus2.c Bonus/utils_bonus/checker_helper.c
 
 

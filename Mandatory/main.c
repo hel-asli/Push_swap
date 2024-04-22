@@ -84,12 +84,6 @@ void	stack_init(long *tab, size_t size)
 	ft_index(a, size);
 	algo_chose(&a, &b, size);
 }
-/*
-void lek(void)
-{
-	system("leaks push_swap");
-}
-*/
 
 int	main(int ac, char **av)
 {
