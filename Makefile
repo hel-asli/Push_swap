@@ -37,6 +37,6 @@ clean :
 fclean : clean
 	$(RM) $(NAME) $(B_NAME)
 
-re : fclean all
+re : fclean all bonus
 
 .Phony : clean
