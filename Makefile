@@ -1,6 +1,5 @@
 CC = cc
-Debug = -fsantize=address -g
-CFLGAS = -Wall -Wextra -Werror
+CFLGAS = -Wall -Wextra -Werror -fsanitize=address -g
 M_SRCSS = Mandatory/main.c Mandatory/utils/utils.c Mandatory/utils/ft_split.c \
 		Mandatory/utils/parsing_utils.c Mandatory/utils/operations.c Mandatory/utils/operations2.c Mandatory/utils/stack_utils.c \
  		Mandatory/utils/parsing_helper.c Mandatory/utils/algo_helper.c Mandatory/utils/sorting_helper.c Mandatory/utils/operations2.c

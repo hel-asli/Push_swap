@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 22:48:13 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/20 23:04:55 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:50:49 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,23 +89,28 @@ void	check_stack(t_stack *a, t_stack *b)
 	write(1, "OK\n", 3);
 }
 
-int	read_inst(t_stack **a, t_stack **b)
+void	err_exit(char *str)
+{
+	ft_putstr_fd(str, 2);
+	exit(EXIT_FAILURE);
+}
+
+void	read_inst(t_stack **a, t_stack **b)
 {
 	char	*str;
 
 	str = get_next_line(0);
+	if (!str)
+		err_exit("Error\n");
 	while (str)
 	{
-		if (ft_strcmp(str, "\n") == 0)
-			return (1);
 		if (!str)
-			return (write(2, "Error\n", 6), exit(EXIT_FAILURE), 0);
+			err_exit("Error\n");
 		else if (check_operation(str))
 			excute_op(str, a, b);
 		else
-			return (write(2, "Error\n", 6), exit(EXIT_FAILURE), 0);
+			err_exit("Error\n");
 		free(str);
 		str = get_next_line(0);
 	}
-	return (1);
 }

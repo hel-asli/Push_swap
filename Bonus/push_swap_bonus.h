@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 23:28:01 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/21 02:16:26 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/06/07 15:09:40 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*join_args(char **av);
 int		check_operation(char *str);
 void	excute_op(char *str, t_stack **a, t_stack **b);
 void	check_stack(t_stack *a, t_stack *b);
-int		read_inst(t_stack **a, t_stack **b);
+void	read_inst(t_stack **a, t_stack **b);
 int		ft_strcmp(char *s1, char *s2);
 
 // stack utils 
