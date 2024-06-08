@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/29 05:53:43 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/20 18:20:59 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/06/08 14:14:51 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ char	*join_args(char **av)
 
 	count = count_chars(av);
 	str = malloc(sizeof(char) * (count + 1));
-	k = 0;
 	if (!str)
 		return (NULL);
+	k = 0;
 	while (*av)
 	{
 		tmp = *av;

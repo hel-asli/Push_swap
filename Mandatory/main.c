@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 08:04:39 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/06/07 15:36:35 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/06/08 14:22:53 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,10 @@ int	main(int ac, char **av)
 	if (!check_dup(tab, size))
 		error_handel(tab);
 	if (is_sorted(tab, size))
-		return (free(tab), exit(EXIT_SUCCESS), 0);
+	{
+		free(tab);
+		exit(EXIT_SUCCESS);
+	}
 	stack_init(tab, size);
 	return (0);
 }

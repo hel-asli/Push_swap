@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 22:48:13 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/06/07 15:50:49 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/06/08 14:43:51 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,16 +101,16 @@ void	read_inst(t_stack **a, t_stack **b)
 
 	str = get_next_line(0);
 	if (!str)
-		err_exit("Error\n");
+		return ;
 	while (str)
 	{
-		if (!str)
-			err_exit("Error\n");
-		else if (check_operation(str))
+		if (check_operation(str))
 			excute_op(str, a, b);
 		else
 			err_exit("Error\n");
 		free(str);
 		str = get_next_line(0);
+		if (!str)
+			return ;
 	}
 }

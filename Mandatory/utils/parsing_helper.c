@@ -6,7 +6,7 @@
 /*   By: hel-asli <hel-asli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 07:23:17 by hel-asli          #+#    #+#             */
-/*   Updated: 2024/04/20 22:57:14 by hel-asli         ###   ########.fr       */
+/*   Updated: 2024/06/08 14:23:32 by hel-asli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ long	*allocate_numbers(char **sp, char *str, size_t size)
 	long	nb;
 	size_t	k;
 
-	tab = malloc(sizeof(long *) * (size + 1));
+	tab = malloc(sizeof(long) * (size + 1));
 	if (!tab)
 	{
 		ft_free(sp);
